@@ -13,7 +13,6 @@ public class TempleRunApp extends Application {
     public void start(Stage root) throws IOException {
         root.setTitle("Temple Run");
         root.setScene(new Scene(FXMLLoader.load(getClass().getResource("TempleRun.fxml"))));
-        root.centerOnScreen();
         root.show();
     }
 
