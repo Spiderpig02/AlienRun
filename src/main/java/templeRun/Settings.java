@@ -11,4 +11,9 @@ public class Settings {
     private static final int screenWith = tileSize * maxScreenCol; // 576 pixels
     private static final int screenHeight = tileSize * maxScreenRow; // 864 pixels
 
+    // Player settings
+    private static final int playerX = 100;
+    private static final int playerY = 100;
+    private static final int playerSpeed = 3;
+
 }
