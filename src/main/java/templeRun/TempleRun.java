@@ -10,7 +10,7 @@ public class TempleRun implements Runnable {
     Painter paint;
     KeyHandler keyHandler;
     Canvas canvas;
-    Player player;
+    private Player player;
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
@@ -19,6 +19,10 @@ public class TempleRun implements Runnable {
         this.paint = new Painter(canvas, player);
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+    public Player getPlayer() {
+        return this.player;
     }
 
     @Override

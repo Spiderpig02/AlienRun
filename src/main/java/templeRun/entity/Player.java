@@ -10,8 +10,9 @@ import templeRun.TempleRunApp;
 import templeRun.io.KeyHandler;
 
 public class Player extends Entity {
-    Canvas canvas;
-    KeyHandler keyHandler;
+    private Canvas canvas;
+    private KeyHandler keyHandler;
+    private static String username;
 
     public Player(Canvas canvas, KeyHandler keyHandler) {
         this.canvas = canvas;
@@ -23,6 +24,14 @@ public class Player extends Entity {
             e.printStackTrace();
         }
 
+    }
+
+    public static void setUsername(String username) {
+        Player.username = username;
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 
     public void setDefaultValues() {
@@ -63,15 +72,15 @@ public class Player extends Entity {
         if (spriteCounter > 12) {
             if (spriteNum == 1) {
                 spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
             }
-        } else if (spriteNum == 2) {
-            spriteNum = 1;
+            spriteCounter = 0;
         }
-        spriteCounter = 0;
     }
 
     public void draw(GraphicsContext g2) {
-        Image image = up1;
+        Image image = null;
 
         switch (direction) {
 

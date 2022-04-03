@@ -23,6 +23,7 @@ public class TRGameController extends Controller {
         game.setOnKeyPressed(e -> keyHandler.keyPressed(e));
         game.setOnKeyReleased(e -> keyHandler.keyReleased(e));
         tr.startGameThread(game, keyHandler);
+        System.out.println(tr.getPlayer().getUsername());
 
     }
 

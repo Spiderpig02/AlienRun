@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import templeRun.TempleRunApp;
 
@@ -21,6 +23,14 @@ public abstract class Controller {
 
     public void changeStage(String fxml) {
         this.changeStage(fxml, null);
+    }
+
+    public void alert(String alertMessage) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("There is an problem with you username");
+        alert.setContentText(alertMessage);
+        alert.showAndWait();
     }
 
     public void changeStage(String fxml, String title) {
