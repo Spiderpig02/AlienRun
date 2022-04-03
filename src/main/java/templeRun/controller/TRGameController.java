@@ -14,15 +14,16 @@ public class TRGameController extends Controller {
     @FXML
     private ListView<Score> scoreboard;
 
-    KeyHandler keyHandler;
+    KeyHandler keyHandler = new KeyHandler();
     TempleRun tr = new TempleRun();
 
     @FXML
     public void initialize() {
-        tr.startGameThread(game);
         game.requestFocus();
         game.setOnKeyPressed(e -> keyHandler.keyPressed(e));
         game.setOnKeyReleased(e -> keyHandler.keyReleased(e));
+        tr.startGameThread(game, keyHandler);
+
     }
 
 }
