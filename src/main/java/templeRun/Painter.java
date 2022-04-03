@@ -16,6 +16,7 @@ public class Painter {
     }
 
     public void draw() {
-        gc.fillRect(100, 100, 50, 50);
+        // gc.fillRect(100, 100, 50, 50);
+        player.draw(gc);
     }
 }
