@@ -17,11 +17,9 @@ public class TRGameController extends Controller {
     KeyHandler keyHandler = new KeyHandler();
     TempleRun tr = new TempleRun();
 
-    @FXML
-    public void initialize() {
-        game.requestFocus();
-        game.setOnKeyPressed(e -> keyHandler.keyPressed(e));
-        game.setOnKeyReleased(e -> keyHandler.keyReleased(e));
+    public void init() {
+        scene.setOnKeyPressed(e -> keyHandler.keyPressed(e));
+        scene.setOnKeyReleased(e -> keyHandler.keyReleased(e));
         tr.startGameThread(game, keyHandler);
         System.out.println(tr.getPlayer().getUsername());
 
