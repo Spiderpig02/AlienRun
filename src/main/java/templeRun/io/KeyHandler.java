@@ -1,10 +1,9 @@
 package templeRun.io;
 
-import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class KeyHandler implements EventHandler<KeyEvent> {
+public class KeyHandler {
 
     private boolean upPressed, downPressed, leftPressed, rightPressed;
 
@@ -79,12 +78,6 @@ public class KeyHandler implements EventHandler<KeyEvent> {
         if (e.getCode() == KeyCode.KP_RIGHT) {
             this.rightPressed = false;
         }
-    }
-
-    @Override
-    public void handle(KeyEvent event) {
-        // TODO Auto-generated method stub
-
     }
 
 }
