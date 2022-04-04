@@ -10,12 +10,12 @@ public class TempleRun implements Runnable {
     Painter paint;
     KeyHandler keyHandler;
     Canvas canvas;
-    private Player player;
+    private Player player = Player.getInstence();
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
         this.canvas = canvas;
-        this.player = new Player(canvas, keyHandler);
+        player.setPlayerThings(canvas, keyHandler);
         this.paint = new Painter(canvas, player);
         gameThread = new Thread(this);
         gameThread.start();

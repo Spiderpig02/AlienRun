@@ -19,6 +19,7 @@ public class TRMenuController extends Controller {
     private TextField username;
     @FXML
     private ListView<Score> scoreboard;
+    private Player player = Player.getInstence();
 
     public void startGame() {
         System.out.println("noe");
@@ -39,7 +40,7 @@ public class TRMenuController extends Controller {
         } catch (NoSuchElementException e) {
             e.printStackTrace();
         }
-        Player.setUsername(tempString);
+        player.setUsername(tempString);
         changeStage("fxml/TempleRunGame.fxml", "Temple Run");
 
     }

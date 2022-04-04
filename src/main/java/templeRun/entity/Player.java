@@ -10,13 +10,12 @@ import templeRun.TempleRunApp;
 import templeRun.io.KeyHandler;
 
 public class Player extends Entity {
+    private static Player player = null;
     private Canvas canvas;
     private KeyHandler keyHandler;
-    private static String username;
+    private String username;
 
-    public Player(Canvas canvas, KeyHandler keyHandler) {
-        this.canvas = canvas;
-        this.keyHandler = keyHandler;
+    private Player() {
         setDefaultValues();
         try {
             getPlayerImage();
@@ -26,8 +25,20 @@ public class Player extends Entity {
 
     }
 
-    public static void setUsername(String username) {
-        Player.username = username;
+    public static Player getInstence() {
+        if (player == null) {
+            player = new Player();
+        }
+        return player;
+    }
+
+    public void setPlayerThings(Canvas canvas, KeyHandler keyHandler) {
+        this.canvas = canvas;
+        this.keyHandler = keyHandler;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUsername() {
