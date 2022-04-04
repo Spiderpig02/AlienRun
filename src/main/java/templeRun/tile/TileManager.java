@@ -8,17 +8,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import templeRun.Settings;
 import templeRun.TempleRunApp;
+import templeRun.entity.Player;
 
 public class TileManager {
 
     private Canvas canvas;
     private Tile[] tile;
     private int mapTileNum[][];
+    private Player player = Player.getInstence();
 
     public TileManager(Canvas canvas) {
         this.canvas = canvas;
         tile = new Tile[10];
-        mapTileNum = new int[Settings.maxScreenCol + 2][Settings.maxScreenRow + 2];
+        mapTileNum = new int[Settings.maxWorldCol][Settings.maxWorldRow];
 
         getTileImage();
         loadMap();
@@ -41,19 +43,19 @@ public class TileManager {
 
     public void loadMap() {
         try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(TempleRunApp.class.getResourceAsStream("map/map.txt")))) {
+                new InputStreamReader(TempleRunApp.class.getResourceAsStream("map/worldMap17x100.txt")))) {
             int col = 0;
             int row = 0;
 
-            while (col < Settings.maxScreenCol && row < Settings.maxScreenRow) {
+            while (col < Settings.maxWorldCol && row < Settings.maxWorldRow) {
                 String line = br.readLine();
-                while (col < Settings.maxScreenCol) {
+                while (col < Settings.maxWorldCol) {
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if (col == Settings.maxScreenCol) {
+                if (col == Settings.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -65,23 +67,29 @@ public class TileManager {
     }
 
     public void draw(GraphicsContext g2) {
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while (col < Settings.maxScreenCol && row < Settings.maxScreenRow) {
-            int tileNum = mapTileNum[col][row];
+        while (worldCol < Settings.maxWorldCol && worldRow < Settings.maxWorldRow) {
+            int tileNum = mapTileNum[worldCol][worldRow];
 
-            g2.drawImage(tile[tileNum].image, x, y, Settings.tileSize, Settings.tileSize);
-            col++;
-            x += Settings.tileSize;
+            int worldX = worldCol * Settings.tileSize;
+            int worldY = worldRow * Settings.tileSize;
+            int screenX = worldX - player.getWorldX() + player.getScreenX();
+            int screenY = worldY - player.getWorldY() + player.getScreenY();
 
-            if (col == Settings.maxScreenCol) {
-                col = 0;
-                x = 0;
-                row++;
-                y += Settings.tileSize;
+            // denne tenger kunn det som er på skjermen for å hjelpe med FPS
+            if (worldX + Settings.tileSize > player.getWorldX() - player.getScreenX()
+                    && worldX - Settings.tileSize < player.getWorldX() + player.getScreenX()
+                    && worldY + Settings.tileSize > player.getWorldY() - player.getScreenY()
+                    && worldY - Settings.tileSize < player.getWorldY() + player.getScreenY()) {
+                g2.drawImage(tile[tileNum].image, screenX, screenY, Settings.tileSize, Settings.tileSize);
+            }
+            worldCol++;
+
+            if (worldCol == Settings.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
             }
 
         }

@@ -14,6 +14,8 @@ public class Player extends Entity {
     private Canvas canvas;
     private KeyHandler keyHandler;
     private String username;
+    public final int screenX;
+    public final int screenY;
 
     private Player() {
         setDefaultValues();
@@ -22,7 +24,24 @@ public class Player extends Entity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
+        screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
+    }
 
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
+    }
+
+    public int getScreenY() {
+        return screenY;
+    }
+
+    public int getScreenX() {
+        return screenX;
     }
 
     public static Player getInstence() {
@@ -46,8 +65,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        x = 100;
-        y = 100;
+        worldX = Settings.tileSize * 9;
+        worldY = Settings.tileSize * 90;
         speed = 3;
         direction = "up";
     }
@@ -65,18 +84,34 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyHandler.isUpPressed() == true) {
+        if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed()) == true) {
             direction = "up";
-            y -= speed;
+            worldY -= speed;
+            worldX -= speed;
+        } else if ((keyHandler.isUpPressed() && keyHandler.isRightPressed()) == true) {
+            direction = "up";
+            worldY -= speed;
+            worldX += speed;
+        } else if ((keyHandler.isDownPressed() && keyHandler.isLeftPressed()) == true) {
+            direction = "up";
+            worldY += speed;
+            worldX -= speed;
+        } else if ((keyHandler.isDownPressed() && keyHandler.isRightPressed()) == true) {
+            direction = "up";
+            worldY += speed;
+            worldX += speed;
+        } else if (keyHandler.isUpPressed() == true) {
+            direction = "up";
+            worldY -= speed;
         } else if (keyHandler.isDownPressed() == true) {
             direction = "down";
-            y += speed;
+            worldY += speed;
         } else if (keyHandler.isLeftPressed() == true) {
             direction = "left";
-            x -= speed;
+            worldX -= speed;
         } else if (keyHandler.isRightPressed() == true) {
             direction = "right";
-            x += speed;
+            worldX += speed;
         }
 
         spriteCounter++;
@@ -130,7 +165,7 @@ public class Player extends Entity {
 
         }
 
-        g2.drawImage(image, x, y, Settings.tileSize, Settings.tileSize);
+        g2.drawImage(image, screenX, screenY, Settings.tileSize, Settings.tileSize);
 
     }
 
