@@ -3,6 +3,7 @@ package templeRun;
 import javafx.scene.canvas.Canvas;
 import templeRun.entity.Player;
 import templeRun.io.KeyHandler;
+import templeRun.tile.TileManager;
 
 public class TempleRun implements Runnable {
 
@@ -11,12 +12,14 @@ public class TempleRun implements Runnable {
     KeyHandler keyHandler;
     Canvas canvas;
     private Player player = Player.getInstence();
+    TileManager tileManager;
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
         this.canvas = canvas;
         player.setPlayerThings(canvas, keyHandler);
-        this.paint = new Painter(canvas, player);
+        tileManager = new TileManager(canvas);
+        this.paint = new Painter(canvas, player, tileManager);
         gameThread = new Thread(this);
         gameThread.start();
     }
