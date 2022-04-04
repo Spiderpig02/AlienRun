@@ -46,10 +46,10 @@ public class Player extends Entity {
         up2 = new Image(TempleRunApp.class.getResource("img/north_2.png").toExternalForm());
         down1 = new Image(TempleRunApp.class.getResource("img/south_1.png").toExternalForm());
         down2 = new Image(TempleRunApp.class.getResource("img/south_2.png").toExternalForm());
-        left1 = new Image(TempleRunApp.class.getResource("img/west_1.png").toExternalForm());
-        left2 = new Image(TempleRunApp.class.getResource("img/west_2.png").toExternalForm());
-        right1 = new Image(TempleRunApp.class.getResource("img/east_1.png").toExternalForm());
-        right2 = new Image(TempleRunApp.class.getResource("img/east_2.png").toExternalForm());
+        left1 = new Image(TempleRunApp.class.getResource("img/east_1.png").toExternalForm());
+        left2 = new Image(TempleRunApp.class.getResource("img/east_2.png").toExternalForm());
+        right1 = new Image(TempleRunApp.class.getResource("img/west_1.png").toExternalForm());
+        right2 = new Image(TempleRunApp.class.getResource("img/west_2.png").toExternalForm());
 
     }
 

@@ -25,57 +25,44 @@ public class KeyHandler {
 
     public void keyPressed(KeyEvent e) {
 
-        if (e.getCode().equals(KeyCode.W)) {
+        if (e.getCode() == KeyCode.W) {
             this.upPressed = true;
-            System.out.println("W");
-        }
-        if (e.getCode() == KeyCode.A) {
+        } else if (e.getCode() == KeyCode.A) {
             this.leftPressed = true;
-            System.out.println("A");
-        }
-        if (e.getCode() == KeyCode.S) {
+        } else if (e.getCode() == KeyCode.S) {
             this.downPressed = true;
-        }
-        if (e.getCode() == KeyCode.D) {
+        } else if (e.getCode() == KeyCode.D) {
             this.rightPressed = true;
-        }
-        if (e.getCode() == KeyCode.KP_UP) {
+        } else if (e.getCode() == KeyCode.UP) {
             this.upPressed = true;
-        }
-        if (e.getCode() == KeyCode.KP_LEFT) {
+            System.out.println("UP");
+        } else if (e.getCode() == KeyCode.LEFT) {
             this.leftPressed = true;
-        }
-        if (e.getCode() == KeyCode.KP_DOWN) {
+        } else if (e.getCode() == KeyCode.DOWN) {
             this.downPressed = true;
-        }
-        if (e.getCode() == KeyCode.KP_RIGHT) {
+        } else if (e.getCode() == KeyCode.RIGHT) {
             this.rightPressed = true;
+        } else {
+            System.out.println(e.getCode());
         }
     }
 
     public void keyReleased(KeyEvent e) {
         if (e.getCode() == KeyCode.W) {
             this.upPressed = false;
-        }
-        if (e.getCode() == KeyCode.A) {
+        } else if (e.getCode() == KeyCode.A) {
             this.leftPressed = false;
-        }
-        if (e.getCode() == KeyCode.S) {
+        } else if (e.getCode() == KeyCode.S) {
             this.downPressed = false;
-        }
-        if (e.getCode() == KeyCode.D) {
+        } else if (e.getCode() == KeyCode.D) {
             this.rightPressed = false;
-        }
-        if (e.getCode() == KeyCode.KP_UP) {
+        } else if (e.getCode() == KeyCode.UP) {
             this.upPressed = false;
-        }
-        if (e.getCode() == KeyCode.KP_LEFT) {
+        } else if (e.getCode() == KeyCode.LEFT) {
             this.leftPressed = false;
-        }
-        if (e.getCode() == KeyCode.KP_DOWN) {
+        } else if (e.getCode() == KeyCode.DOWN) {
             this.downPressed = false;
-        }
-        if (e.getCode() == KeyCode.KP_RIGHT) {
+        } else if (e.getCode() == KeyCode.RIGHT) {
             this.rightPressed = false;
         }
     }
