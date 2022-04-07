@@ -68,10 +68,18 @@ public class TileManager {
 
     public void draw(GraphicsContext g2) {
         int worldCol = 0;
-        int worldRow = 0;
+        int worldRow = player.getWorldY() / Settings.tileSize - 20;
 
-        while (worldCol < Settings.maxWorldCol && worldRow < Settings.maxWorldRow) {
-            int tileNum = mapTileNum[worldCol][worldRow];
+        while (worldCol < Settings.maxWorldCol && worldRow < player.getWorldY() / Settings.tileSize + 20) {
+            int temp = Math.floorMod(worldRow, Settings.maxWorldRow);
+            if (temp < 0) {
+                System.out.println("aaaaaa");
+                System.out.println(worldRow);
+                System.out.println(Settings.maxScreenRow);
+                System.out.println(temp);
+
+            }
+            int tileNum = mapTileNum[worldCol][temp];
 
             int worldX = worldCol * Settings.tileSize;
             int worldY = worldRow * Settings.tileSize;
@@ -93,5 +101,30 @@ public class TileManager {
             }
 
         }
+
+        // while (worldCol < Settings.maxWorldCol && worldRow < Settings.maxWorldRow) {
+        // int tileNum = mapTileNum[worldCol][worldRow];
+
+        // int worldX = worldCol * Settings.tileSize;
+        // int worldY = worldRow * Settings.tileSize;
+        // int screenX = worldX - player.getWorldX() + player.getScreenX();
+        // int screenY = worldY - player.getWorldY() + player.getScreenY();
+
+        // // denne tenger kunn det som er på skjermen for å hjelpe med FPS
+        // if (worldX + Settings.tileSize > player.getWorldX() - player.getScreenX()
+        // && worldX - Settings.tileSize < player.getWorldX() + player.getScreenX()
+        // && worldY + Settings.tileSize > player.getWorldY() - player.getScreenY()
+        // && worldY - Settings.tileSize < player.getWorldY() + player.getScreenY()) {
+        // g2.drawImage(tile[tileNum].image, screenX, screenY, Settings.tileSize,
+        // Settings.tileSize);
+        // }
+        // worldCol++;
+
+        // if (worldCol == Settings.maxWorldCol) {
+        // worldCol = 0;
+        // worldRow++;
+        // }
+
+        // }
     }
 }
