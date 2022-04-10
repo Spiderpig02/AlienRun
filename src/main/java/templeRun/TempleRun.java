@@ -8,6 +8,7 @@ import templeRun.tile.TileManager;
 public class TempleRun implements Runnable {
 
     private Thread gameThread;
+    public ColisionTester colisionTester;
     Painter paint;
     KeyHandler keyHandler;
     Canvas canvas;
@@ -17,9 +18,10 @@ public class TempleRun implements Runnable {
     public void startGameThread(Canvas canvas, KeyHandler keyHandler) {
         this.keyHandler = keyHandler;
         this.canvas = canvas;
-        player.setPlayerThings(canvas, keyHandler);
+        player.setPlayerThings(this, keyHandler);
         tileManager = new TileManager(canvas);
         this.paint = new Painter(canvas, player, tileManager);
+        colisionTester = new ColisionTester(this);
         gameThread = new Thread(this);
         gameThread.start();
     }

@@ -13,8 +13,8 @@ import templeRun.entity.Player;
 public class TileManager {
 
     private Canvas canvas;
-    private Tile[] tile;
-    private int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
     private Player player = Player.getInstence();
 
     public TileManager(Canvas canvas) {
@@ -32,10 +32,13 @@ public class TileManager {
             tile[0].image = new Image(TempleRunApp.class.getResource("img/bricks.png").toExternalForm());
             tile[1] = new Tile();
             tile[1].image = new Image(TempleRunApp.class.getResource("img/sky.png").toExternalForm());
+            tile[1].collision = true;
             tile[2] = new Tile();
             tile[2].image = new Image(TempleRunApp.class.getResource("img/stone.png").toExternalForm());
+            tile[2].collision = true;
             tile[3] = new Tile();
             tile[3].image = new Image(TempleRunApp.class.getResource("img/water.png").toExternalForm());
+            tile[3].collision = true;
         } catch (Exception e) {
             e.printStackTrace();
         }

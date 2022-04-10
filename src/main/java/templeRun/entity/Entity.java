@@ -1,5 +1,6 @@
 package templeRun.entity;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
 public abstract class Entity {
@@ -11,5 +12,8 @@ public abstract class Entity {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
+
+    public Rectangle2D soliedSpace;
+    public boolean collisionOn = false;
 
 }

@@ -2,16 +2,18 @@ package templeRun.entity;
 
 import java.io.IOException;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import templeRun.Settings;
+import templeRun.TempleRun;
 import templeRun.TempleRunApp;
 import templeRun.io.KeyHandler;
 
 public class Player extends Entity {
     private static Player player = null;
-    private Canvas canvas;
+    private TempleRun tr;
     private KeyHandler keyHandler;
     private String username;
     public final int screenX;
@@ -26,6 +28,8 @@ public class Player extends Entity {
         }
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
+
+        soliedSpace = new Rectangle2D(12, 0, 24, 48);
     }
 
     public int getWorldX() {
@@ -51,8 +55,8 @@ public class Player extends Entity {
         return player;
     }
 
-    public void setPlayerThings(Canvas canvas, KeyHandler keyHandler) {
-        this.canvas = canvas;
+    public void setPlayerThings(TempleRun tr, KeyHandler keyHandler) {
+        this.tr = tr;
         this.keyHandler = keyHandler;
     }
 
@@ -112,6 +116,11 @@ public class Player extends Entity {
         } else if (keyHandler.isRightPressed() == true) {
             direction = "right";
             worldX += speed;
+        }
+
+        tr.colisionTester.checkTile(this);
+        if (collisionOn == true) {
+            speed = 0;
         }
 
         spriteCounter++;

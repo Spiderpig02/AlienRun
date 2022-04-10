@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="876.0" stylesheets="@../css/gameCss.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="templeRun.controller.TRGameController">
    <children>
       <Canvas fx:id="game" height="864.0" width="576.0" />
-      <ListView fx:id="scoreboard" layoutX="576.0" prefHeight="864.0" prefWidth="300.0" stylesheets="@../css/gameCss.css" />
+      <ListView fx:id="scoreboard" layoutX="576.0" layoutY="124.0" prefHeight="740.0" prefWidth="300.0" stylesheets="@../css/gameCss.css" />
+      <Label layoutX="596.0" layoutY="51.0" prefHeight="30.0" prefWidth="57.0" text="Poeng:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="points" layoutX="655.0" layoutY="51.0" prefHeight="30.0" prefWidth="193.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
