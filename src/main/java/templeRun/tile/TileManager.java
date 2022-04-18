@@ -29,15 +29,15 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = new Image(TempleRunApp.class.getResource("img/bricks.png").toExternalForm());
+            tile[0].image = new Image(TempleRunApp.class.getResource("img/Bricks.png").toExternalForm());
             tile[1] = new Tile();
-            tile[1].image = new Image(TempleRunApp.class.getResource("img/sky.png").toExternalForm());
+            tile[1].image = new Image(TempleRunApp.class.getResource("img/Sky.png").toExternalForm());
             tile[1].collision = true;
             tile[2] = new Tile();
-            tile[2].image = new Image(TempleRunApp.class.getResource("img/stone.png").toExternalForm());
+            tile[2].image = new Image(TempleRunApp.class.getResource("img/Stone.png").toExternalForm());
             tile[2].collision = true;
             tile[3] = new Tile();
-            tile[3].image = new Image(TempleRunApp.class.getResource("img/water.png").toExternalForm());
+            tile[3].image = new Image(TempleRunApp.class.getResource("img/Water.png").toExternalForm());
             tile[3].collision = true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -76,14 +76,14 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() throws IOException {
-        up1 = new Image(TempleRunApp.class.getResource("img/north_1.png").toExternalForm());
-        up2 = new Image(TempleRunApp.class.getResource("img/north_2.png").toExternalForm());
-        down1 = new Image(TempleRunApp.class.getResource("img/south_1.png").toExternalForm());
-        down2 = new Image(TempleRunApp.class.getResource("img/south_2.png").toExternalForm());
-        left1 = new Image(TempleRunApp.class.getResource("img/east_1.png").toExternalForm());
-        left2 = new Image(TempleRunApp.class.getResource("img/east_2.png").toExternalForm());
-        right1 = new Image(TempleRunApp.class.getResource("img/west_1.png").toExternalForm());
-        right2 = new Image(TempleRunApp.class.getResource("img/west_2.png").toExternalForm());
+        up1 = new Image(TempleRunApp.class.getResource("img/North_1.png").toExternalForm());
+        up2 = new Image(TempleRunApp.class.getResource("img/North_2.png").toExternalForm());
+        down1 = new Image(TempleRunApp.class.getResource("img/South_1.png").toExternalForm());
+        down2 = new Image(TempleRunApp.class.getResource("img/South_2.png").toExternalForm());
+        left1 = new Image(TempleRunApp.class.getResource("img/East_1.png").toExternalForm());
+        left2 = new Image(TempleRunApp.class.getResource("img/East_2.png").toExternalForm());
+        right1 = new Image(TempleRunApp.class.getResource("img/West_1.png").toExternalForm());
+        right2 = new Image(TempleRunApp.class.getResource("img/West_2.png").toExternalForm());
 
     }
 

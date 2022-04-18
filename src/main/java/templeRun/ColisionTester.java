@@ -17,20 +17,25 @@ public class ColisionTester {
 
         int entityLeftCol = entityLeftWorldX / Settings.tileSize;
         int entityRightCol = entityRightWorldX / Settings.tileSize;
-        int entityTopRow = entityTopWorldY / Settings.tileSize;
-        int entityBottomRow = entityBottomWorldY / Settings.tileSize;
+        // int entityTopRow = entityTopWorldY / Settings.tileSize;
+        // int entityBottomRow = entityBottomWorldY / Settings.tileSize;
+        int entityTopRow = Math.floorMod(entityTopWorldY / Settings.tileSize, Settings.maxWorldRow);
+        int entityBottomRow = Math.floorMod(entityBottomWorldY / Settings.tileSize, Settings.maxWorldRow);
 
         int tile1, tile2;
 
         if (entity.direction.equalsIgnoreCase("up")) {
-            entityTopRow = (entityTopWorldY - entity.speed) / Settings.tileSize;
+            // entityTopRow = (entityTopWorldY - entity.speed) / Settings.tileSize;
+            entityTopRow = Math.floorMod((entityTopWorldY - entity.speed) / Settings.tileSize, Settings.maxWorldRow);
             tile1 = tr.tileManager.mapTileNum[entityLeftCol][entityTopRow];
             tile2 = tr.tileManager.mapTileNum[entityRightCol][entityTopRow];
             if (tr.tileManager.tile[tile1].collision == true || tr.tileManager.tile[tile2].collision == true) {
                 entity.collisionOn = true;
             }
         } else if (entity.direction.equalsIgnoreCase("down")) {
-            entityBottomRow = (entityBottomWorldY + entity.speed) / Settings.tileSize;
+            // entityBottomRow = (entityBottomWorldY + entity.speed) / Settings.tileSize;
+            entityBottomRow = Math.floorMod((entityBottomWorldY + entity.speed) / Settings.tileSize,
+                    Settings.maxWorldRow);
             tile1 = tr.tileManager.mapTileNum[entityLeftCol][entityBottomRow];
             tile2 = tr.tileManager.mapTileNum[entityRightCol][entityBottomRow];
             if (tr.tileManager.tile[tile1].collision == true || tr.tileManager.tile[tile2].collision == true) {
