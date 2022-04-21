@@ -2,6 +2,8 @@ package templeRun.tile;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,6 +18,7 @@ public class TileManager {
     public Tile[] tile;
     public int mapTileNum[][];
     private Player player = Player.getInstence();
+    private int counter;
 
     public TileManager(Canvas canvas) {
         this.canvas = canvas;
@@ -25,6 +28,14 @@ public class TileManager {
         getTileImage();
         loadMap();
     }
+
+    // public void generateRandomObstical() {
+    //     if (counter ==600) {
+    //         int temp = new Random().nextInt(bound);
+    //     } else {
+            
+    //     }
+    // }
 
     public void getTileImage() {
         try {

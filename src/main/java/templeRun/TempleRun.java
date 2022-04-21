@@ -1,5 +1,6 @@
 package templeRun;
 
+import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import templeRun.controller.TRGameController;
 import templeRun.entity.Player;
@@ -67,7 +68,10 @@ public class TempleRun implements Runnable {
 
     public void update() {
         player.update();
-        controller.updatePlayerPoints(player.getPlayerPoints());
+        Platform.runLater(() -> {
+            controller.updatePlayerPoints(player.getPlayerPoints());
+        });
+        // tileManager.generateRandomObstical();
     }
 
     public void draw() {
