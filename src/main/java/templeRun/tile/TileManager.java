@@ -3,7 +3,6 @@ package templeRun.tile;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -29,13 +28,75 @@ public class TileManager {
         loadMap();
     }
 
-    // public void generateRandomObstical() {
-    //     if (counter ==600) {
-    //         int temp = new Random().nextInt(bound);
-    //     } else {
-            
-    //     }
-    // }
+    private int randomTimer() {
+        switch (player.speed) {
+            case 3:
+                return 450;
+            case 5:
+                return 300;
+            case 7:
+                return 225;
+            case 9:
+                return 175;
+            default:
+                return 600;
+        }
+    }
+
+    public void generateRandomObsticle() {
+        if (counter == randomTimer()) {
+            counter = 0;
+            loadMap();
+            int temp = new Random().nextInt(4);
+            switch (temp) {
+                case 0:
+                    mapTileNum[8][1] = 3;
+                    mapTileNum[8][2] = 3;
+                    mapTileNum[8][3] = 2;
+                    mapTileNum[8][4] = 2;
+                    mapTileNum[8][5] = 3;
+                    mapTileNum[8][6] = 3;
+                    break;
+                case 1:
+                    mapTileNum[8][1] = 3;
+                    mapTileNum[8][2] = 3;
+                    mapTileNum[8][3] = 3;
+                    mapTileNum[7][3] = 3;
+                    mapTileNum[7][4] = 3;
+                    mapTileNum[7][5] = 3;
+                    mapTileNum[7][6] = 3;
+                    mapTileNum[9][6] = 3;
+                    mapTileNum[9][7] = 3;
+                    break;
+                case 2:
+                    mapTileNum[8][1] = 3;
+                    mapTileNum[8][2] = 3;
+                    mapTileNum[8][3] = 3;
+                    mapTileNum[9][3] = 3;
+                    mapTileNum[9][4] = 3;
+                    mapTileNum[7][6] = 3;
+                    mapTileNum[7][7] = 3;
+                    mapTileNum[7][8] = 3;
+                    mapTileNum[8][6] = 3;
+                    mapTileNum[8][7] = 3;
+                    mapTileNum[8][8] = 3;
+                    break;
+                case 3:
+                    mapTileNum[7][1] = 2;
+                    mapTileNum[7][2] = 2;
+                    mapTileNum[8][4] = 2;
+                    mapTileNum[9][5] = 2;
+                    mapTileNum[8][7] = 2;
+                    mapTileNum[9][9] = 2;
+                    mapTileNum[8][10] = 2;
+                    mapTileNum[8][11] = 2;
+                    mapTileNum[8][12] = 2;
+                    break;
+            }
+        } else {
+            counter++;
+        }
+    }
 
     public void getTileImage() {
         try {
@@ -73,7 +134,6 @@ public class TileManager {
                     col = 0;
                     row++;
                 }
-                System.out.println("har laste map");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,30 +175,5 @@ public class TileManager {
             }
 
         }
-
-        // while (worldCol < Settings.maxWorldCol && worldRow < Settings.maxWorldRow) {
-        // int tileNum = mapTileNum[worldCol][worldRow];
-
-        // int worldX = worldCol * Settings.tileSize;
-        // int worldY = worldRow * Settings.tileSize;
-        // int screenX = worldX - player.getWorldX() + player.getScreenX();
-        // int screenY = worldY - player.getWorldY() + player.getScreenY();
-
-        // // denne tenger kunn det som er på skjermen for å hjelpe med FPS
-        // if (worldX + Settings.tileSize > player.getWorldX() - player.getScreenX()
-        // && worldX - Settings.tileSize < player.getWorldX() + player.getScreenX()
-        // && worldY + Settings.tileSize > player.getWorldY() - player.getScreenY()
-        // && worldY - Settings.tileSize < player.getWorldY() + player.getScreenY()) {
-        // g2.drawImage(tile[tileNum].image, screenX, screenY, Settings.tileSize,
-        // Settings.tileSize);
-        // }
-        // worldCol++;
-
-        // if (worldCol == Settings.maxWorldCol) {
-        // worldCol = 0;
-        // worldRow++;
-        // }
-
-        // }
     }
 }

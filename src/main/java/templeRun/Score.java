@@ -17,4 +17,9 @@ public class Score {
         return points;
     }
 
+    @Override
+    public String toString() {
+        return getUsername() + ":\t" + String.valueOf(getPoints());
+    }
+
 }

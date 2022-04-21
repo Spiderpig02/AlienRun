@@ -18,6 +18,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     private Long points = Long.parseLong("0");
+    private int difficultyTimer;
 
     private Player() {
         setDefaultValues();
@@ -29,7 +30,7 @@ public class Player extends Entity {
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
-        soliedSpace = new Rectangle2D(16, 0, 16, 48);
+        soliedSpace = new Rectangle2D(16, 16, 16, 32);
     }
 
     public int getWorldX() {
@@ -124,7 +125,7 @@ public class Player extends Entity {
 
         tr.colisionTester.checkTile(this);
         if (collisionOn == true) {
-            speed = 0;
+            System.out.println("du er død egt");
         }
 
         spriteCounter++;
@@ -137,7 +138,16 @@ public class Player extends Entity {
             spriteCounter = 0;
         }
 
+        if (difficultyTimer > 3000 && difficultyTimer < 5000) {
+            speed = 5;
+        } else if (difficultyTimer > 5000 && difficultyTimer < 8000) {
+            speed = 7;
+        } else if (difficultyTimer > 8000) {
+            speed = 9;
+        }
+
         points++;
+        difficultyTimer++;
     }
 
     public void draw(GraphicsContext g2) {

@@ -1,6 +1,5 @@
 package templeRun.controller;
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;

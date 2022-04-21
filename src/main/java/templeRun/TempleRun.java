@@ -71,7 +71,7 @@ public class TempleRun implements Runnable {
         Platform.runLater(() -> {
             controller.updatePlayerPoints(player.getPlayerPoints());
         });
-        // tileManager.generateRandomObstical();
+        tileManager.generateRandomObsticle();
     }
 
     public void draw() {

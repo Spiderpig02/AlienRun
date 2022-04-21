@@ -35,7 +35,6 @@ public class KeyHandler {
             this.rightPressed = true;
         } else if (e.getCode() == KeyCode.UP) {
             this.upPressed = true;
-            System.out.println("UP");
         } else if (e.getCode() == KeyCode.LEFT) {
             this.leftPressed = true;
         } else if (e.getCode() == KeyCode.DOWN) {
