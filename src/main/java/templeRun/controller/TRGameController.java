@@ -23,9 +23,13 @@ public class TRGameController extends Controller {
     public void init() {
         scene.setOnKeyPressed(e -> keyHandler.keyPressed(e));
         scene.setOnKeyReleased(e -> keyHandler.keyReleased(e));
-        tr.startGameThread(game, keyHandler);
+        tr.startGameThread(game, keyHandler, this);
         System.out.println(tr.getPlayer().getUsername());
 
+    }
+
+    public void updatePlayerPoints(Long points) {
+        this.points.setText(String.valueOf(points));
     }
 
 }

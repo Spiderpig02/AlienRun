@@ -1,6 +1,7 @@
 package templeRun;
 
 import javafx.scene.canvas.Canvas;
+import templeRun.controller.TRGameController;
 import templeRun.entity.Player;
 import templeRun.io.KeyHandler;
 import templeRun.tile.TileManager;
@@ -14,10 +15,12 @@ public class TempleRun implements Runnable {
     Canvas canvas;
     private Player player = Player.getInstence();
     TileManager tileManager;
+    private TRGameController controller;
 
-    public void startGameThread(Canvas canvas, KeyHandler keyHandler) {
+    public void startGameThread(Canvas canvas, KeyHandler keyHandler, TRGameController controller) {
         this.keyHandler = keyHandler;
         this.canvas = canvas;
+        this.controller = controller;
         player.setPlayerThings(this, keyHandler);
         tileManager = new TileManager(canvas);
         this.paint = new Painter(canvas, player, tileManager);
@@ -64,6 +67,7 @@ public class TempleRun implements Runnable {
 
     public void update() {
         player.update();
+        controller.updatePlayerPoints(player.getPlayerPoints());
     }
 
     public void draw() {

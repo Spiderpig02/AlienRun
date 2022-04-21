@@ -18,6 +18,7 @@ public class Player extends Entity {
     private String username;
     public final int screenX;
     public final int screenY;
+    private Long points = Long.parseLong("0");
 
     private Player() {
         setDefaultValues();
@@ -58,6 +59,10 @@ public class Player extends Entity {
     public void setPlayerThings(TempleRun tr, KeyHandler keyHandler) {
         this.tr = tr;
         this.keyHandler = keyHandler;
+    }
+
+    public Long getPlayerPoints() {
+        return this.points;
     }
 
     public void setUsername(String username) {
@@ -132,6 +137,8 @@ public class Player extends Entity {
             }
             spriteCounter = 0;
         }
+
+        points++;
     }
 
     public void draw(GraphicsContext g2) {
@@ -176,6 +183,11 @@ public class Player extends Entity {
 
         g2.drawImage(image, screenX, screenY, Settings.tileSize, Settings.tileSize);
 
+    }
+
+    @Override
+    public String toString() {
+        return getUsername() + ":\t" + String.valueOf(getPlayerPoints());
     }
 
 }
