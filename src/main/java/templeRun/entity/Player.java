@@ -3,7 +3,6 @@ package templeRun.entity;
 import java.io.IOException;
 
 import javafx.geometry.Rectangle2D;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import templeRun.Settings;
@@ -30,7 +29,7 @@ public class Player extends Entity {
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
-        soliedSpace = new Rectangle2D(12, 0, 24, 48);
+        soliedSpace = new Rectangle2D(16, 0, 16, 48);
     }
 
     public int getWorldX() {
@@ -74,7 +73,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = Settings.tileSize * 9;
+        worldX = Settings.tileSize * 8;
         worldY = Settings.tileSize * 10;
         speed = 3;
         direction = "up";
