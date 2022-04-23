@@ -19,6 +19,7 @@ public class Player extends Entity {
     public final int screenY;
     private Long points = Long.parseLong("0");
     private int difficultyTimer;
+    private int horisontalSpeed;
 
     private Player() {
         setDefaultValues();
@@ -30,7 +31,7 @@ public class Player extends Entity {
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
-        soliedSpace = new Rectangle2D(16, 16, 16, 32);
+        soliedSpace = new Rectangle2D(16, 8, 16, 24);
     }
 
     public int getWorldX() {
@@ -77,6 +78,7 @@ public class Player extends Entity {
         worldX = Settings.tileSize * 8;
         worldY = Settings.tileSize * 10;
         speed = 3;
+        horisontalSpeed = 3;
         direction = "up";
     }
 
@@ -94,21 +96,21 @@ public class Player extends Entity {
 
     public void update() {
         if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed()) == true) {
-            direction = "up";
+            direction = "left";
             worldY -= speed;
-            worldX -= speed;
+            worldX -= horisontalSpeed;
         } else if ((keyHandler.isUpPressed() && keyHandler.isRightPressed()) == true) {
-            direction = "up";
+            direction = "right";
             worldY -= speed;
-            worldX += speed;
+            worldX += horisontalSpeed;
         } else if ((keyHandler.isDownPressed() && keyHandler.isLeftPressed()) == true) {
             direction = "up";
             worldY += speed;
-            worldX -= speed;
+            worldX -= horisontalSpeed;
         } else if ((keyHandler.isDownPressed() && keyHandler.isRightPressed()) == true) {
             direction = "up";
             worldY += speed;
-            worldX += speed;
+            worldX += horisontalSpeed;
         } else if (keyHandler.isUpPressed() == true) {
             direction = "up";
             worldY -= speed;
@@ -117,10 +119,10 @@ public class Player extends Entity {
             worldY += speed;
         } else if (keyHandler.isLeftPressed() == true) {
             direction = "left";
-            worldX -= speed;
+            worldX -= horisontalSpeed;
         } else if (keyHandler.isRightPressed() == true) {
             direction = "right";
-            worldX += speed;
+            worldX += horisontalSpeed;
         }
 
         tr.colisionTester.checkTile(this);
@@ -142,8 +144,10 @@ public class Player extends Entity {
             speed = 5;
         } else if (difficultyTimer > 5000 && difficultyTimer < 8000) {
             speed = 7;
+            horisontalSpeed = 4;
         } else if (difficultyTimer > 8000) {
             speed = 9;
+            horisontalSpeed = 6;
         }
 
         points++;

@@ -1,5 +1,11 @@
 package templeRun.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import javafx.fxml.FXML;
@@ -10,6 +16,7 @@ import javafx.scene.control.TextInputDialog;
 import templeRun.Score;
 import templeRun.VerifyClass;
 import templeRun.entity.Player;
+import templeRun.io.SaveAndLoad;
 
 public class TRMenuController extends Controller {
 
@@ -20,8 +27,10 @@ public class TRMenuController extends Controller {
     @FXML
     private ListView<Score> scoreboard;
     private Player player = Player.getInstence();
+    private SaveAndLoad saveAndLoad = new SaveAndLoad();
 
     public void startGame() {
+
         System.out.println("noe");
         String tempString = username.getText();
         System.out.println(tempString);
@@ -45,9 +54,26 @@ public class TRMenuController extends Controller {
 
     }
 
+    private void loadScoreboard() {
+        try {
+            Collection<Score> tmp = new ArrayList<>(saveAndLoad.readSavedScoreboard().values());
+            if (tmp != null) {
+                List<Score> playerOnBoard = new ArrayList<>(tmp);
+                Collections.sort(playerOnBoard, Comparator.comparing(Score::getPoints));
+                scoreboard.getItems().addAll(playerOnBoard);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void initialize() {
         startButton.setOnAction(e -> startGame());
+        loadScoreboard();
     }
 
 }

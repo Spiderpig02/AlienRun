@@ -84,7 +84,7 @@ public class TileManager {
                 case 3:
                     mapTileNum[7][1] = 2;
                     mapTileNum[7][2] = 2;
-                    mapTileNum[8][4] = 2;
+                    mapTileNum[8][5] = 2;
                     mapTileNum[9][5] = 2;
                     mapTileNum[8][7] = 2;
                     mapTileNum[9][9] = 2;

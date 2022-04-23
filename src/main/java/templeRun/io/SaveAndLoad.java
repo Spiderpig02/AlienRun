@@ -2,14 +2,13 @@ package templeRun.io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 
 import templeRun.Score;
-import templeRun.TempleRunApp;
 
 public class SaveAndLoad implements ISaveAndLoad {
 
@@ -18,7 +17,7 @@ public class SaveAndLoad implements ISaveAndLoad {
             Iterator<String> set = scoreboard.keySet().iterator();
             while (set.hasNext()) {
                 String name = set.next();
-                bw.write(name + ":" + String.valueOf(scoreboard.get(name)));
+                bw.write(name + ":" + String.valueOf(scoreboard.get(name).getPoints()) + "\n");
             }
 
         } catch (Exception e) {
@@ -31,7 +30,7 @@ public class SaveAndLoad implements ISaveAndLoad {
         HashMap<String, Score> tmpMap = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(TempleRunApp.class.getResourceAsStream("scoreData.txt")))) {
+                new FileReader("scoreData.txt"))) {
             String line;
 
             while ((line = br.readLine()) != null) {
@@ -51,6 +50,19 @@ public class SaveAndLoad implements ISaveAndLoad {
         }
 
         return tmpMap;
+    }
+
+    public static void main(String[] args) {
+        SaveAndLoad saveAndLoad = new SaveAndLoad();
+        HashMap<String, Score> tmp = new HashMap<>();
+        tmp.put("Daniel", new Score("Daniel", 420L));
+        tmp.put("Jens", new Score("Jens", 69L));
+        tmp.put("Henrik", new Score("Henrik", 42069L));
+        try {
+            saveAndLoad.saveStats(tmp);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
