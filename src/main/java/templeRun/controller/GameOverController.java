@@ -14,7 +14,7 @@ public class GameOverController extends Controller {
     public void initialize() {
         Quit.setOnAction(e -> quitGame());
         StartNewGame.setOnAction(e -> startNewGame());
-        PlayerStats.setText(super.getScore().toString());
+        PlayerStats.setText(getScore().toString());
     }
 
     private void quitGame() {

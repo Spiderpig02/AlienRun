@@ -14,7 +14,7 @@ public abstract class Controller {
 
     private Stage stage;
     protected Scene scene;
-    private Score lastScore;
+    private Score lastScore = new Score("Test", 42069L);
 
     public Stage getStage() {
         return stage;
@@ -29,8 +29,8 @@ public abstract class Controller {
     }
 
     public void changeStage(String fxml, String title, Score score) {
-        changeStage(fxml, title);
         this.lastScore = score;
+        changeStage(fxml, title);
     }
 
     public Score getScore() {

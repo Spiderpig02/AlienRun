@@ -174,6 +174,7 @@ public class Player extends Entity {
         }
         player.setDefaultValues();
         tr.switchController(playerdata);
+        collisionOn = false;
     }
 
     public void draw(GraphicsContext g2) {
