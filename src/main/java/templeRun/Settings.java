@@ -17,7 +17,5 @@ public class Settings {
     // World
     public static final int maxWorldCol = 17;
     public static final int maxWorldRow = 25;
-    public static final int maxWorldWidth = tileSize * maxWorldCol;
-    public static final int maxWorldHeight = tileSize * maxWorldRow;
 
 }
