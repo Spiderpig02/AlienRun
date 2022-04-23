@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javafx.event.EventHandler;
@@ -15,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
 import templeRun.Score;
 import templeRun.TempleRun;
+import templeRun.entity.Player;
 import templeRun.io.KeyHandler;
 import templeRun.io.SaveAndLoad;
 
@@ -30,6 +30,7 @@ public class TRGameController extends Controller {
     KeyHandler keyHandler = new KeyHandler();
     TempleRun tr = new TempleRun();
     private SaveAndLoad saveAndLoad = new SaveAndLoad();
+    private Player player = Player.getInstence();
 
     public void init() {
         loadScoreboard();
@@ -40,7 +41,7 @@ public class TRGameController extends Controller {
             };
         });
         tr.startGameThread(game, keyHandler, this);
-        System.out.println(tr.getPlayer().getUsername());
+        System.out.println(player.getUsername());
 
     }
 
@@ -48,12 +49,16 @@ public class TRGameController extends Controller {
         this.points.setText(String.valueOf(points));
     }
 
+    public void gameOver(Score score) {
+        changeStage("fxml/GameOver.fxml", "Game Over", score);
+    }
+
     private void loadScoreboard() {
         try {
             Collection<Score> tmp = new ArrayList<>(saveAndLoad.readSavedScoreboard().values());
             if (tmp != null) {
                 List<Score> playerOnBoard = new ArrayList<>(tmp);
-                Collections.sort(playerOnBoard, Comparator.comparing(Score::getPoints));
+                Collections.sort(playerOnBoard);
                 scoreboard.getItems().addAll(playerOnBoard);
             }
 

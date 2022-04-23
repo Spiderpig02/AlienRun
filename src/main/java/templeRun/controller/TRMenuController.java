@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -59,7 +58,7 @@ public class TRMenuController extends Controller {
             Collection<Score> tmp = new ArrayList<>(saveAndLoad.readSavedScoreboard().values());
             if (tmp != null) {
                 List<Score> playerOnBoard = new ArrayList<>(tmp);
-                Collections.sort(playerOnBoard, Comparator.comparing(Score::getPoints));
+                Collections.sort(playerOnBoard);
                 scoreboard.getItems().addAll(playerOnBoard);
             }
 

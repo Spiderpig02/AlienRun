@@ -146,13 +146,6 @@ public class TileManager {
 
         while (worldCol < Settings.maxWorldCol && worldRow < player.getWorldY() / Settings.tileSize + 20) {
             int temp = Math.floorMod(worldRow, Settings.maxWorldRow);
-            if (temp < 0) {
-                System.out.println("aaaaaa");
-                System.out.println(worldRow);
-                System.out.println(Settings.maxScreenRow);
-                System.out.println(temp);
-
-            }
             int tileNum = mapTileNum[worldCol][temp];
 
             int worldX = worldCol * Settings.tileSize;

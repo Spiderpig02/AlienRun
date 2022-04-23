@@ -1,6 +1,6 @@
 package templeRun;
 
-public class Score {
+public class Score implements Comparable<Score> {
     private String username;
     private Long points;
 
@@ -20,6 +20,12 @@ public class Score {
     @Override
     public String toString() {
         return getUsername() + ":\t" + String.valueOf(getPoints());
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        return (int) (o.getPoints() - this.getPoints());
+
     }
 
 }

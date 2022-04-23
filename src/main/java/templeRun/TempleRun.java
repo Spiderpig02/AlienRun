@@ -17,6 +17,7 @@ public class TempleRun implements Runnable {
     private Player player = Player.getInstence();
     TileManager tileManager;
     private TRGameController controller;
+    private boolean gameOver;
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler, TRGameController controller) {
         this.keyHandler = keyHandler;
@@ -28,10 +29,6 @@ public class TempleRun implements Runnable {
         colisionTester = new ColisionTester(this);
         gameThread = new Thread(this);
         gameThread.start();
-    }
-
-    public Player getPlayer() {
-        return this.player;
     }
 
     @Override
@@ -66,16 +63,31 @@ public class TempleRun implements Runnable {
 
     }
 
-    public void update() {
-        player.update();
+    public void setGameOver() {
+        gameOver = true;
+        gameThread = null;
+    }
+
+    public void switchController(Score score) {
         Platform.runLater(() -> {
-            controller.updatePlayerPoints(player.getPlayerPoints());
+            controller.gameOver(score);
         });
-        tileManager.generateRandomObsticle();
+    }
+
+    public void update() {
+        if (!gameOver) {
+            player.update();
+            Platform.runLater(() -> {
+                controller.updatePlayerPoints(player.getPlayerPoints());
+            });
+            tileManager.generateRandomObsticle();
+        }
     }
 
     public void draw() {
-        paint.draw();
+        if (!gameOver) {
+            paint.draw();
+        }
 
     }
 

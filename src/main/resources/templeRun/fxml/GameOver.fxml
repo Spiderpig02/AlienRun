@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="templeRun.controller.GameOverController">
+   <children>
+      <Label layoutX="265.0" layoutY="101.0" text="GAME OVER" />
+      <Button fx:id="StartNewGame" layoutX="103.0" layoutY="244.0" mnemonicParsing="false" text="Start new game" />
+      <Button fx:id="Quit" layoutX="433.0" layoutY="245.0" mnemonicParsing="false" text="Quit" />
+      <Label fx:id="PlayerStats" layoutX="269.0" layoutY="183.0" text="Player stats" />
+   </children>
+</AnchorPane>

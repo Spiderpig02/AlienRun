@@ -7,12 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import templeRun.Score;
 import templeRun.TempleRunApp;
 
 public abstract class Controller {
 
     private Stage stage;
     protected Scene scene;
+    private Score lastScore;
 
     public Stage getStage() {
         return stage;
@@ -24,6 +26,15 @@ public abstract class Controller {
 
     public void changeStage(String fxml) {
         this.changeStage(fxml, null);
+    }
+
+    public void changeStage(String fxml, String title, Score score) {
+        changeStage(fxml, title);
+        this.lastScore = score;
+    }
+
+    public Score getScore() {
+        return lastScore;
     }
 
     public void setScene(Scene scene) {

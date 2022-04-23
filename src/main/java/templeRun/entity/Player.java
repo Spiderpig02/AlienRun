@@ -1,14 +1,19 @@
 package templeRun.entity;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import templeRun.Score;
 import templeRun.Settings;
 import templeRun.TempleRun;
 import templeRun.TempleRunApp;
 import templeRun.io.KeyHandler;
+import templeRun.io.SaveAndLoad;
 
 public class Player extends Entity {
     private static Player player = null;
@@ -17,7 +22,7 @@ public class Player extends Entity {
     private String username;
     public final int screenX;
     public final int screenY;
-    private Long points = Long.parseLong("0");
+    private Long points;
     private int difficultyTimer;
     private int horisontalSpeed;
 
@@ -80,6 +85,8 @@ public class Player extends Entity {
         speed = 3;
         horisontalSpeed = 3;
         direction = "up";
+        points = 0L;
+        difficultyTimer = 0;
     }
 
     public void getPlayerImage() throws IOException {
@@ -127,7 +134,7 @@ public class Player extends Entity {
 
         tr.colisionTester.checkTile(this);
         if (collisionOn == true) {
-            System.out.println("du er død egt");
+            gameOver();
         }
 
         spriteCounter++;
@@ -152,6 +159,21 @@ public class Player extends Entity {
 
         points++;
         difficultyTimer++;
+    }
+
+    private void gameOver() {
+        tr.setGameOver();
+        Score playerdata = new Score(username, points);
+        SaveAndLoad saveplayer = new SaveAndLoad();
+        try {
+            HashMap<String, Score> tmp = new HashMap<String, Score>(saveplayer.readSavedScoreboard());
+            tmp.put(playerdata.getUsername(), playerdata);
+            saveplayer.saveStats(tmp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        player.setDefaultValues();
+        tr.switchController(playerdata);
     }
 
     public void draw(GraphicsContext g2) {
