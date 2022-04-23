@@ -167,7 +167,13 @@ public class Player extends Entity {
         SaveAndLoad saveplayer = new SaveAndLoad();
         try {
             HashMap<String, Score> tmp = new HashMap<String, Score>(saveplayer.readSavedScoreboard());
-            tmp.put(playerdata.getUsername(), playerdata);
+            if (tmp.containsKey(username)) {
+                if (tmp.get(username).getPoints() < points) {
+                    tmp.put(username, playerdata);
+                }
+            } else {
+                tmp.put(username, playerdata);
+            }
             saveplayer.saveStats(tmp);
         } catch (Exception e) {
             e.printStackTrace();
