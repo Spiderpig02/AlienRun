@@ -1,36 +1,30 @@
 package templeRun;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
 
-import javax.sound.*;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Sound {
 
-    private Clip clip;
-    private URL soundURL[] = new URL[4];
+    private Media mediaList[] = new Media[4];
+    private MediaPlayer player;
 
     public Sound() {
-        soundURL[0] = getClass().getResource("/sound/GameSound.wav");
-        soundURL[1] = getClass().getResource("/sound/GameOver.wav");
-        soundURL[2] = getClass().getResource("/sound/SpeedIncrees.wav");
+        mediaList[0] = new Media(getClass().getResource("/sound/GameSound.mp3").toExternalForm());
+        mediaList[1] = new Media(getClass().getResource("/sound/GameOver.wav").toExternalForm());
+        mediaList[2] = new Media(getClass().getResource("/sound/SpeedIncrees.wav").toExternalForm());
 
     }
 
     public void setFile(int sound) {
-
-        try {
-            AudioInputStream AudioInputStream = AudioSystem.getAudioInputStream(soundURL[sound]);
-            clip = AudioSystem.getClip();
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        player = new MediaPlayer(mediaList[sound]);
     }
 
     public void play() {
-
+        player.play();
     }
 
     public void loop() {
@@ -38,6 +32,6 @@ public class Sound {
     }
 
     public void stop() {
-
+        player.stop();
     }
 }

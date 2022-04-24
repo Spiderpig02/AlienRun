@@ -36,7 +36,7 @@ public class Player extends Entity {
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
-        soliedSpace = new Rectangle2D(16, 8, 16, 24);
+        soliedSpace = new Rectangle2D(16, 24, 10, 8);
     }
 
     public int getWorldX() {

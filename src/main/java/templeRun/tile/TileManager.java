@@ -77,7 +77,6 @@ public class TileManager {
                     mapTileNum[7][6] = 3;
                     mapTileNum[7][7] = 3;
                     mapTileNum[7][8] = 3;
-                    mapTileNum[8][6] = 3;
                     mapTileNum[8][7] = 3;
                     mapTileNum[8][8] = 3;
                     break;
