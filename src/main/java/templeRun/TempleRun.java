@@ -11,11 +11,11 @@ public class TempleRun implements Runnable {
 
     private Thread gameThread;
     public ColisionTester colisionTester;
-    Painter paint;
-    KeyHandler keyHandler;
-    Canvas canvas;
+    private Painter paint;
+    private KeyHandler keyHandler;
+    private Canvas canvas;
     private Player player = Player.getInstence();
-    TileManager tileManager;
+    public TileManager tileManager;
     private TRGameController controller;
     private boolean gameOver;
 

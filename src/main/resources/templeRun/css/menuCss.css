@@ -1,3 +1,12 @@
-#scoreboard {
-    -fx-backgrund: black;
+/* #scoreboard {
+    background-color: darkgreen;
+} */
+
+.button {
+    /* -fx-background-color: red; */
+}
+
+.list-cell {
+    /* -fx-backgrund-color: blue; */
+    /* -fx-text-fill: blue; */
 }

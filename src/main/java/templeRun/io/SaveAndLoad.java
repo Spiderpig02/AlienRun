@@ -20,6 +20,8 @@ public class SaveAndLoad implements ISaveAndLoad {
                 bw.write(name + ":" + String.valueOf(scoreboard.get(name).getPoints()) + "\n");
             }
 
+        } catch (NullPointerException e) {
+            System.out.println("The hash map is null");
         } catch (Exception e) {
             e.printStackTrace();
         }
