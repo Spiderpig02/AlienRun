@@ -14,8 +14,8 @@ public class Sound {
 
     public Sound() {
         mediaList[0] = new Media(getClass().getResource("/sound/GameSound.mp3").toExternalForm());
-        mediaList[1] = new Media(getClass().getResource("/sound/GameOver.wav").toExternalForm());
-        mediaList[2] = new Media(getClass().getResource("/sound/SpeedIncrees.wav").toExternalForm());
+        mediaList[1] = new Media(getClass().getResource("/sound/GameOver.mp3").toExternalForm());
+        mediaList[2] = new Media(getClass().getResource("/sound/SpeedIncrees.mp3").toExternalForm());
 
     }
 

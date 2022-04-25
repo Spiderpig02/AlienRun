@@ -14,7 +14,6 @@ public abstract class Controller {
 
     private Stage stage;
     protected Scene scene;
-    private Score lastScore = new Score("Test", 42069L);
 
     public Stage getStage() {
         return stage;
@@ -29,12 +28,8 @@ public abstract class Controller {
     }
 
     public void changeStage(String fxml, String title, Score score) {
-        this.lastScore = score;
+        GameOverController.setScore(score);
         changeStage(fxml, title);
-    }
-
-    public Score getScore() {
-        return lastScore;
     }
 
     public void setScene(Scene scene) {
