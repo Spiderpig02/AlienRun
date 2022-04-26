@@ -32,9 +32,9 @@ public class TRGameController extends Controller {
     private TempleRun tr = new TempleRun();
     private SaveAndLoad saveAndLoad = new SaveAndLoad();
     private Player player = Player.getInstence();
-    private Sound gameSoud = new Sound();
-    private Sound speedIncrees = new Sound();
-    private Sound gameOver = new Sound();
+    private Sound gameSoud;
+    private Sound speedIncrees;
+    private Sound gameOver;
 
     public void init() {
         loadScoreboard();
@@ -46,6 +46,7 @@ public class TRGameController extends Controller {
         });
         tr.startGameThread(game, keyHandler, this);
         System.out.println(player.getUsername());
+        gameSoud = new Sound();
         gameSoud.setFile(0);
         gameSoud.play();
     }
@@ -55,12 +56,14 @@ public class TRGameController extends Controller {
     }
 
     public void playSpeed() {
+        speedIncrees = new Sound();
         speedIncrees.setFile(1);
         speedIncrees.play();
         speedIncrees.stop();
     }
 
     public void gameOver(Score score) {
+        gameOver = new Sound();
         gameSoud.stop();
         gameOver.setFile(2);
         gameOver.play();

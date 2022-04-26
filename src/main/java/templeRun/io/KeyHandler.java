@@ -8,11 +8,11 @@ public class KeyHandler {
     private boolean upPressed, downPressed, leftPressed, rightPressed;
 
     public boolean isUpPressed() {
-        return upPressed;
+        return true;
     }
 
     public boolean isDownPressed() {
-        return downPressed;
+        return false;
     }
 
     public boolean isLeftPressed() {
@@ -48,7 +48,7 @@ public class KeyHandler {
 
     public void keyReleased(KeyEvent e) {
         if (e.getCode() == KeyCode.W) {
-            this.upPressed = false;
+            // this.upPressed = false;
         } else if (e.getCode() == KeyCode.A) {
             this.leftPressed = false;
         } else if (e.getCode() == KeyCode.S) {
@@ -56,7 +56,7 @@ public class KeyHandler {
         } else if (e.getCode() == KeyCode.D) {
             this.rightPressed = false;
         } else if (e.getCode() == KeyCode.UP) {
-            this.upPressed = false;
+            // this.upPressed = false;
         } else if (e.getCode() == KeyCode.LEFT) {
             this.leftPressed = false;
         } else if (e.getCode() == KeyCode.DOWN) {

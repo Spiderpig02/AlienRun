@@ -2,7 +2,7 @@ package templeRun.io;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import templeRun.main.TempleRun;
+import templeRun.TempleRunApp;
 
 public class Sound {
 
@@ -10,9 +10,9 @@ public class Sound {
     private MediaPlayer player;
 
     public Sound() {
-        mediaList[0] = new Media(TempleRun.class.getResource("sound/GameSound.mp3").toExternalForm());
-        mediaList[1] = new Media(TempleRun.class.getResource("sound/SpeedIncrees.mp3").toExternalForm());
-        mediaList[2] = new Media(TempleRun.class.getResource("sound/GameOver.mp3").toExternalForm());
+        mediaList[0] = new Media(TempleRunApp.class.getResource("sound/GameSound.mp3").toExternalForm());
+        mediaList[1] = new Media(TempleRunApp.class.getResource("sound/SpeedIncrees.mp3").toExternalForm());
+        mediaList[2] = new Media(TempleRunApp.class.getResource("sound/GameOver.mp3").toExternalForm());
     }
 
     public void setFile(int sound) {
