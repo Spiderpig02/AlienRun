@@ -3,7 +3,7 @@ package templeRun.io;
 import java.io.IOException;
 import java.util.HashMap;
 
-import templeRun.Score;
+import templeRun.entity.Score;
 
 public interface ISaveAndLoad {
 

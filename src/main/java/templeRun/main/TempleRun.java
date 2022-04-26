@@ -1,34 +1,39 @@
-package templeRun;
+package templeRun.main;
 
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import templeRun.controller.TRGameController;
 import templeRun.entity.Player;
+import templeRun.entity.Score;
 import templeRun.io.KeyHandler;
 import templeRun.tile.TileManager;
 
 public class TempleRun implements Runnable {
 
     private Thread gameThread;
-    public ColisionTester colisionTester;
+    private ColisionTester colisionTester;
     private Painter paint;
-    private KeyHandler keyHandler;
-    private Canvas canvas;
     private Player player = Player.getInstence();
-    public TileManager tileManager;
+    private TileManager tileManager;
     private TRGameController controller;
     private boolean gameOver;
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler, TRGameController controller) {
-        this.keyHandler = keyHandler;
-        this.canvas = canvas;
         this.controller = controller;
         player.setPlayerThings(this, keyHandler);
-        tileManager = new TileManager(canvas);
+        tileManager = new TileManager();
         this.paint = new Painter(canvas, player, tileManager);
         colisionTester = new ColisionTester(this);
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+    public ColisionTester getColisionTester() {
+        return colisionTester;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 
     @Override
@@ -66,6 +71,12 @@ public class TempleRun implements Runnable {
     public void setGameOver() {
         gameOver = true;
         gameThread = null;
+    }
+
+    public void speedIncrees() {
+        Platform.runLater(() -> {
+            controller.playSpeed();
+        });
     }
 
     public void switchController(Score score) {

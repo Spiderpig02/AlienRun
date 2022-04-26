@@ -12,11 +12,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyEvent;
-import templeRun.Score;
-import templeRun.TempleRun;
 import templeRun.entity.Player;
+import templeRun.entity.Score;
 import templeRun.io.KeyHandler;
 import templeRun.io.SaveAndLoad;
+import templeRun.io.Sound;
+import templeRun.main.TempleRun;
 
 public class TRGameController extends Controller {
 
@@ -27,10 +28,13 @@ public class TRGameController extends Controller {
     @FXML
     private Label points;
 
-    KeyHandler keyHandler = new KeyHandler();
-    TempleRun tr = new TempleRun();
+    private KeyHandler keyHandler = new KeyHandler();
+    private TempleRun tr = new TempleRun();
     private SaveAndLoad saveAndLoad = new SaveAndLoad();
     private Player player = Player.getInstence();
+    private Sound gameSoud = new Sound();
+    private Sound speedIncrees = new Sound();
+    private Sound gameOver = new Sound();
 
     public void init() {
         loadScoreboard();
@@ -42,14 +46,24 @@ public class TRGameController extends Controller {
         });
         tr.startGameThread(game, keyHandler, this);
         System.out.println(player.getUsername());
-
+        gameSoud.setFile(0);
+        gameSoud.play();
     }
 
     public void updatePlayerPoints(Long points) {
         this.points.setText(String.valueOf(points));
     }
 
+    public void playSpeed() {
+        speedIncrees.setFile(1);
+        speedIncrees.play();
+        speedIncrees.stop();
+    }
+
     public void gameOver(Score score) {
+        gameSoud.stop();
+        gameOver.setFile(2);
+        gameOver.play();
         changeStage("fxml/GameOver.fxml", "Game Over", score);
     }
 

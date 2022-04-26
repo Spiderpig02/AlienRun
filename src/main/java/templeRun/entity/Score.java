@@ -1,4 +1,4 @@
-package templeRun;
+package templeRun.entity;
 
 public class Score implements Comparable<Score> {
     private String username;

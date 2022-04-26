@@ -4,23 +4,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import templeRun.Settings;
 import templeRun.TempleRunApp;
 import templeRun.entity.Player;
+import templeRun.main.Settings;
 
 public class TileManager {
 
-    private Canvas canvas;
-    public Tile[] tile;
-    public int mapTileNum[][];
+    private Tile[] tile;
+    private int mapTileNum[][];
     private Player player = Player.getInstence();
     private int counter;
 
-    public TileManager(Canvas canvas) {
-        this.canvas = canvas;
+    public TileManager() {
         tile = new Tile[10];
         mapTileNum = new int[Settings.maxWorldCol][Settings.maxWorldRow];
 
@@ -29,7 +26,7 @@ public class TileManager {
     }
 
     private int randomTimer() {
-        switch (player.speed) {
+        switch (player.getSpeed()) {
             case 3:
                 return 450;
             case 5:
@@ -41,6 +38,14 @@ public class TileManager {
             default:
                 return 600;
         }
+    }
+
+    public Tile[] getTile() {
+        return tile;
+    }
+
+    public int[][] getMapTileNum() {
+        return mapTileNum;
     }
 
     public void generateRandomObsticle() {
@@ -100,16 +105,16 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = new Image(TempleRunApp.class.getResource("img/Bricks.png").toExternalForm());
+            tile[0].setImage(new Image(TempleRunApp.class.getResource("img/Bricks.png").toExternalForm()));
             tile[1] = new Tile();
-            tile[1].image = new Image(TempleRunApp.class.getResource("img/Sky.png").toExternalForm());
-            tile[1].collision = true;
+            tile[1].setImage(new Image(TempleRunApp.class.getResource("img/Sky.png").toExternalForm()));
+            tile[1].setCollision(true);
             tile[2] = new Tile();
-            tile[2].image = new Image(TempleRunApp.class.getResource("img/Stone.png").toExternalForm());
-            tile[2].collision = true;
+            tile[2].setImage(new Image(TempleRunApp.class.getResource("img/Stone.png").toExternalForm()));
+            tile[2].setCollision(true);
             tile[3] = new Tile();
-            tile[3].image = new Image(TempleRunApp.class.getResource("img/Water.png").toExternalForm());
-            tile[3].collision = true;
+            tile[3].setImage(new Image(TempleRunApp.class.getResource("img/Water.png").toExternalForm()));
+            tile[3].setCollision(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,7 +162,7 @@ public class TileManager {
                     && worldX - Settings.tileSize < player.getWorldX() + player.getScreenX()
                     && worldY + Settings.tileSize > player.getWorldY() - player.getScreenY()
                     && worldY - Settings.tileSize < player.getWorldY() + player.getScreenY()) {
-                g2.drawImage(tile[tileNum].image, screenX, screenY, Settings.tileSize, Settings.tileSize);
+                g2.drawImage(tile[tileNum].getImage(), screenX, screenY, Settings.tileSize, Settings.tileSize);
             }
             worldCol++;
 

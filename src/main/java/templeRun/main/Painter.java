@@ -1,4 +1,4 @@
-package templeRun;
+package templeRun.main;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

@@ -1,4 +1,4 @@
-package templeRun;
+package templeRun.main;
 
 public class Settings {
 

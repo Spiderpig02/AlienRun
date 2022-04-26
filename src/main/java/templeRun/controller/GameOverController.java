@@ -3,7 +3,7 @@ package templeRun.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import templeRun.Score;
+import templeRun.entity.Score;
 
 public class GameOverController extends Controller {
     @FXML

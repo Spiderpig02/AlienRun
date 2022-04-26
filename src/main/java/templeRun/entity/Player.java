@@ -6,12 +6,11 @@ import java.util.HashMap;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import templeRun.Score;
-import templeRun.Settings;
-import templeRun.TempleRun;
 import templeRun.TempleRunApp;
 import templeRun.io.KeyHandler;
 import templeRun.io.SaveAndLoad;
+import templeRun.main.Settings;
+import templeRun.main.TempleRun;
 
 public class Player extends Entity {
     private static Player player = null;
@@ -34,15 +33,7 @@ public class Player extends Entity {
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
-        soliedSpace = new Rectangle2D(16, 24, 10, 8);
-    }
-
-    public int getWorldX() {
-        return worldX;
-    }
-
-    public int getWorldY() {
-        return worldY;
+        setSoliedSpace(new Rectangle2D(16, 24, 10, 8));
     }
 
     public int getScreenY() {
@@ -78,81 +69,83 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = Settings.tileSize * 8;
-        worldY = Settings.tileSize * 10;
-        speed = 3;
+        setWorldX(Settings.tileSize * 8);
+        setWorldY(Settings.tileSize * 10);
+        setSpeed(3);
         horisontalSpeed = 3;
-        direction = "up";
+        setDirection("up");
         points = 0L;
         difficultyTimer = 0;
     }
 
     public void getPlayerImage() throws IOException {
-        up1 = new Image(TempleRunApp.class.getResource("img/North_1.png").toExternalForm());
-        up2 = new Image(TempleRunApp.class.getResource("img/North_2.png").toExternalForm());
-        down1 = new Image(TempleRunApp.class.getResource("img/South_1.png").toExternalForm());
-        down2 = new Image(TempleRunApp.class.getResource("img/South_2.png").toExternalForm());
-        left1 = new Image(TempleRunApp.class.getResource("img/East_1.png").toExternalForm());
-        left2 = new Image(TempleRunApp.class.getResource("img/East_2.png").toExternalForm());
-        right1 = new Image(TempleRunApp.class.getResource("img/West_1.png").toExternalForm());
-        right2 = new Image(TempleRunApp.class.getResource("img/West_2.png").toExternalForm());
-
+        setUp1(new Image(TempleRunApp.class.getResource("img/North_1.png").toExternalForm()));
+        setUp2(new Image(TempleRunApp.class.getResource("img/North_2.png").toExternalForm()));
+        setDown1(new Image(TempleRunApp.class.getResource("img/South_1.png").toExternalForm()));
+        setDown2(new Image(TempleRunApp.class.getResource("img/South_2.png").toExternalForm()));
+        setLeft1(new Image(TempleRunApp.class.getResource("img/East_1.png").toExternalForm()));
+        setLeft2(new Image(TempleRunApp.class.getResource("img/East_2.png").toExternalForm()));
+        setRight1(new Image(TempleRunApp.class.getResource("img/West_1.png").toExternalForm()));
+        setRight2(new Image(TempleRunApp.class.getResource("img/West_2.png").toExternalForm()));
     }
 
     public void update() {
         if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed()) == true) {
-            direction = "left";
-            worldY -= speed;
-            worldX -= horisontalSpeed;
+            setDirection("left");
+            setWorldY(getWorldY() - getSpeed());
+            setWorldX(getWorldX() - horisontalSpeed);
         } else if ((keyHandler.isUpPressed() && keyHandler.isRightPressed()) == true) {
-            direction = "right";
-            worldY -= speed;
-            worldX += horisontalSpeed;
+            setDirection("right");
+            setWorldY(getWorldY() - getSpeed());
+            setWorldX(getWorldX() + horisontalSpeed);
         } else if ((keyHandler.isDownPressed() && keyHandler.isLeftPressed()) == true) {
-            direction = "up";
-            worldY += speed;
-            worldX -= horisontalSpeed;
+            setDirection("up");
+            setWorldY(getWorldY() + getSpeed());
+            setWorldX(getWorldX() - horisontalSpeed);
         } else if ((keyHandler.isDownPressed() && keyHandler.isRightPressed()) == true) {
-            direction = "up";
-            worldY += speed;
-            worldX += horisontalSpeed;
+            setDirection("up");
+            setWorldY(getWorldY() + getSpeed());
+            setWorldX(getWorldX() + horisontalSpeed);
         } else if (keyHandler.isUpPressed() == true) {
-            direction = "up";
-            worldY -= speed;
+            setDirection("up");
+            setWorldY(getWorldY() - getSpeed());
         } else if (keyHandler.isDownPressed() == true) {
-            direction = "down";
-            worldY += speed;
+            setDirection("down");
+            setWorldY(getWorldY() + getSpeed());
         } else if (keyHandler.isLeftPressed() == true) {
-            direction = "left";
-            worldX -= horisontalSpeed;
+            setDirection("left");
+            setWorldX(getWorldX() - horisontalSpeed);
         } else if (keyHandler.isRightPressed() == true) {
-            direction = "right";
-            worldX += horisontalSpeed;
+            setDirection("right");
+            setWorldX(getWorldX() + horisontalSpeed);
         }
 
-        tr.colisionTester.checkTile(this);
-        if (collisionOn == true) {
+        tr.getColisionTester().checkTile(this);
+        if (isCollisionOn() == true) {
             gameOver();
         }
 
-        spriteCounter++;
-        if (spriteCounter > 12) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
+        setSpriteCounter(getSpriteCounter() + 1);
+        if (getSpriteCounter() > 12) {
+            if (getSpriteNum() == 1) {
+                setSpriteNum(2);
+            } else if (getSpriteNum() == 2) {
+                setSpriteNum(1);
             }
-            spriteCounter = 0;
+            setSpriteCounter(0);
         }
 
         if (difficultyTimer > 3000 && difficultyTimer < 5000) {
-            speed = 5;
+            setSpeed(5);
+            tr.speedIncrees();
         } else if (difficultyTimer > 5000 && difficultyTimer < 8000) {
-            speed = 7;
+            setSpeed(7);
             horisontalSpeed = 4;
+            tr.speedIncrees();
         } else if (difficultyTimer > 8000) {
-            speed = 9;
+            setSpeed(9);
             horisontalSpeed = 6;
+            tr.speedIncrees();
         }
 
         points++;
@@ -178,44 +171,40 @@ public class Player extends Entity {
         }
         player.setDefaultValues();
         tr.switchController(playerdata);
-        collisionOn = false;
+        setCollisionOn(false);
     }
 
     public void draw(GraphicsContext g2) {
         Image image = null;
 
-        switch (direction) {
+        switch (getDirection()) {
 
             case "up":
-                if (spriteNum == 1) {
-                    image = up1;
-                }
-                if (this.spriteNum == 2) {
-                    image = up2;
+                if (getSpriteNum() == 1) {
+                    image = getUp1();
+                } else if (getSpriteNum() == 2) {
+                    image = getUp2();
                 }
                 break;
             case "down":
-                if (this.spriteNum == 1) {
-                    image = down1;
-                }
-                if (this.spriteNum == 2) {
-                    image = down2;
+                if (getSpriteNum() == 1) {
+                    image = getDown1();
+                } else if (getSpriteNum() == 2) {
+                    image = getDown2();
                 }
                 break;
             case "left":
-                if (this.spriteNum == 1) {
-                    image = left1;
-                }
-                if (this.spriteNum == 2) {
-                    image = left2;
+                if (getSpriteNum() == 1) {
+                    image = getLeft1();
+                } else if (getSpriteNum() == 2) {
+                    image = getLeft2();
                 }
                 break;
             case "right":
-                if (this.spriteNum == 1) {
-                    image = right1;
-                }
-                if (this.spriteNum == 2) {
-                    image = right2;
+                if (getSpriteNum() == 1) {
+                    image = getRight1();
+                } else if (getSpriteNum() == 2) {
+                    image = getRight2();
                 }
                 break;
 

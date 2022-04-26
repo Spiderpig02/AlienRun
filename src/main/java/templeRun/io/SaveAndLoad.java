@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import templeRun.Score;
+import templeRun.entity.Score;
 
 public class SaveAndLoad implements ISaveAndLoad {
 
@@ -53,18 +53,4 @@ public class SaveAndLoad implements ISaveAndLoad {
 
         return tmpMap;
     }
-
-    public static void main(String[] args) {
-        SaveAndLoad saveAndLoad = new SaveAndLoad();
-        HashMap<String, Score> tmp = new HashMap<>();
-        tmp.put("Daniel", new Score("Daniel", 420L));
-        tmp.put("Jens", new Score("Jens", 69L));
-        tmp.put("Henrik", new Score("Henrik", 42069L));
-        try {
-            saveAndLoad.saveStats(tmp);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
