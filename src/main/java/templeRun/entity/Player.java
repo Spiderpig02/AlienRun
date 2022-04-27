@@ -61,6 +61,7 @@ public class Player extends Entity {
     }
 
     public void setUsername(String username) {
+        VerifyClass.verifyUsername(username);
         this.username = username;
     }
 
@@ -68,7 +69,7 @@ public class Player extends Entity {
         return this.username;
     }
 
-    public void setDefaultValues() {
+    private void setDefaultValues() {
         setWorldX(Settings.tileSize * 8);
         setWorldY(Settings.tileSize * 10);
         setSpeed(3);
@@ -78,7 +79,7 @@ public class Player extends Entity {
         difficultyTimer = 0;
     }
 
-    public void getPlayerImage() throws IOException {
+    private void getPlayerImage() throws IOException {
         setUp1(new Image(TempleRunApp.class.getResource("img/North_1.png").toExternalForm()));
         setUp2(new Image(TempleRunApp.class.getResource("img/North_2.png").toExternalForm()));
         setDown1(new Image(TempleRunApp.class.getResource("img/South_1.png").toExternalForm()));
@@ -90,6 +91,34 @@ public class Player extends Entity {
     }
 
     public void update() {
+        playerKeyAction();
+
+        tr.getColisionTester().checkTile(this);
+        if (isCollisionOn() == true) {
+            gameOver();
+        }
+
+        updateSprite();
+
+        checkDifferculty();
+
+        points++;
+        difficultyTimer++;
+    }
+
+    private void updateSprite() {
+        setSpriteCounter(getSpriteCounter() + 1);
+        if (getSpriteCounter() > 12) {
+            if (getSpriteNum() == 1) {
+                setSpriteNum(2);
+            } else if (getSpriteNum() == 2) {
+                setSpriteNum(1);
+            }
+            setSpriteCounter(0);
+        }
+    }
+
+    private void playerKeyAction() {
         if ((keyHandler.isUpPressed() && keyHandler.isLeftPressed()) == true) {
             setDirection("left");
             setWorldY(getWorldY() - getSpeed());
@@ -119,22 +148,9 @@ public class Player extends Entity {
             setDirection("right");
             setWorldX(getWorldX() + horisontalSpeed);
         }
+    }
 
-        tr.getColisionTester().checkTile(this);
-        if (isCollisionOn() == true) {
-            gameOver();
-        }
-
-        setSpriteCounter(getSpriteCounter() + 1);
-        if (getSpriteCounter() > 12) {
-            if (getSpriteNum() == 1) {
-                setSpriteNum(2);
-            } else if (getSpriteNum() == 2) {
-                setSpriteNum(1);
-            }
-            setSpriteCounter(0);
-        }
-
+    private void checkDifferculty() {
         if (difficultyTimer > 3000 && difficultyTimer < 5000) {
             setSpeed(5);
             tr.speedIncrees();
@@ -147,9 +163,6 @@ public class Player extends Entity {
             horisontalSpeed = 6;
             tr.speedIncrees();
         }
-
-        points++;
-        difficultyTimer++;
     }
 
     private void gameOver() {

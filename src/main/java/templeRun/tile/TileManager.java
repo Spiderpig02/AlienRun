@@ -28,7 +28,7 @@ public class TileManager {
     private int randomTimer() {
         switch (player.getSpeed()) {
             case 3:
-                return 450;
+                return 400;
             case 5:
                 return 300;
             case 7:

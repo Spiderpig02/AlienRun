@@ -5,8 +5,13 @@ public class Score implements Comparable<Score> {
     private Long points;
 
     public Score(String username, Long points) {
+        VerifyClass.verifyUsername(username);
         this.username = username;
-        this.points = points;
+        if (points > 0) {
+            this.points = points;
+        } else {
+            this.points = 0L;
+        }
     }
 
     public String getUsername() {
