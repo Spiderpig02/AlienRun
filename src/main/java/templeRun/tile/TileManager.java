@@ -102,7 +102,7 @@ public class TileManager {
         }
     }
 
-    public void getTileImage() {
+    private void getTileImage() {
         try {
             tile[0] = new Tile();
             tile[0].setImage(new Image(TempleRunApp.class.getResource("img/Bricks.png").toExternalForm()));
@@ -120,7 +120,7 @@ public class TileManager {
         }
     }
 
-    public void loadMap() {
+    private void loadMap() {
         try (BufferedReader br = new BufferedReader(
                 new InputStreamReader(TempleRunApp.class.getResourceAsStream("map/worldMap17x100.txt")))) {
             int col = 0;
@@ -157,7 +157,7 @@ public class TileManager {
             int screenX = worldX - player.getWorldX() + player.getScreenX();
             int screenY = worldY - player.getWorldY() + player.getScreenY();
 
-            // denne tenger kunn det som er på skjermen for å hjelpe med FPS
+            // denne tegner kunn det som er på skjermen for å hjelpe med FPS
             if (worldX + Settings.tileSize > player.getWorldX() - player.getScreenX()
                     && worldX - Settings.tileSize < player.getWorldX() + player.getScreenX()
                     && worldY + Settings.tileSize > player.getWorldY() - player.getScreenY()

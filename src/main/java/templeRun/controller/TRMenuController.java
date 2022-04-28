@@ -1,6 +1,5 @@
 package templeRun.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,7 +18,7 @@ import templeRun.io.SaveAndLoad;
 public class TRMenuController extends Controller {
 
     @FXML
-    private Button startButton;
+    private Button startButton, quit;
     @FXML
     private TextField username;
     @FXML
@@ -42,6 +41,10 @@ public class TRMenuController extends Controller {
         changeStage("fxml/TempleRunGame.fxml", "Temple Run");
     }
 
+    private void quitGame() {
+        getStage().close();
+    }
+
     private void loadScoreboard() {
         try {
             Collection<Score> tmp = new ArrayList<>(saveAndLoad.readSavedScoreboard().values());
@@ -51,9 +54,9 @@ public class TRMenuController extends Controller {
                 scoreboard.getItems().addAll(playerOnBoard);
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -61,6 +64,7 @@ public class TRMenuController extends Controller {
     @FXML
     public void initialize() {
         startButton.setOnAction(e -> startGame());
+        quit.setOnAction((e) -> quitGame());
         loadScoreboard();
     }
 

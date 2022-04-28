@@ -12,7 +12,7 @@ import templeRun.entity.Score;
 
 public class SaveAndLoad implements ISaveAndLoad {
 
-    public void saveStats(HashMap<String, Score> scoreboard) throws IOException {
+    public void saveStats(HashMap<String, Score> scoreboard) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("scoreData.txt"))) {
             Iterator<String> set = scoreboard.keySet().iterator();
             while (set.hasNext()) {
@@ -28,7 +28,7 @@ public class SaveAndLoad implements ISaveAndLoad {
 
     }
 
-    public HashMap<String, Score> readSavedScoreboard() throws IOException {
+    public HashMap<String, Score> readSavedScoreboard() {
         HashMap<String, Score> tmpMap = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(

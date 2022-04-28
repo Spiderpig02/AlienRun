@@ -1,6 +1,5 @@
 package templeRun.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -79,9 +78,9 @@ public class TRGameController extends Controller {
                 scoreboard.getItems().addAll(playerOnBoard);
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

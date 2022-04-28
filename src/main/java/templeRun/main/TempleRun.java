@@ -14,14 +14,13 @@ public class TempleRun implements Runnable {
     private ColisionTester colisionTester;
     private Painter paint;
     private Player player = Player.getInstence();
-    private TileManager tileManager;
+    private TileManager tileManager = new TileManager();
     private TRGameController controller;
     private boolean gameOver;
 
     public void startGameThread(Canvas canvas, KeyHandler keyHandler, TRGameController controller) {
         this.controller = controller;
         player.setPlayerThings(this, keyHandler);
-        tileManager = new TileManager();
         this.paint = new Painter(canvas, player, tileManager);
         colisionTester = new ColisionTester(this);
         gameThread = new Thread(this);
@@ -43,7 +42,7 @@ public class TempleRun implements Runnable {
         double delta = 0;
         Long lastTime = System.nanoTime();
         Long currentTime;
-        Long timer = Long.valueOf("0");
+        Long timer = 0L;
         int drawCount = 0;
 
         while (gameThread != null) {
@@ -54,14 +53,14 @@ public class TempleRun implements Runnable {
             lastTime = currentTime;
             if (delta >= 1) {
                 update();
-                paint.draw();
+                draw();
                 delta--;
                 drawCount++;
             }
             if (timer >= 1000000000) {
                 System.out.println("FPS" + drawCount);
                 drawCount = 0;
-                timer = Long.valueOf("0");
+                timer = 0L;
             }
 
         }
@@ -85,7 +84,7 @@ public class TempleRun implements Runnable {
         });
     }
 
-    public void update() {
+    private void update() {
         if (!gameOver) {
             player.update();
             Platform.runLater(() -> {
@@ -95,7 +94,7 @@ public class TempleRun implements Runnable {
         }
     }
 
-    public void draw() {
+    private void draw() {
         if (!gameOver) {
             paint.draw();
         }
