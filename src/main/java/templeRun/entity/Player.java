@@ -1,6 +1,5 @@
 package templeRun.entity;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import javafx.geometry.Rectangle2D;
@@ -25,11 +24,6 @@ public class Player extends Entity {
 
     private Player() {
         setDefaultValues();
-        try {
-            getPlayerImage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         screenX = Settings.screenWith / 2 - (Settings.tileSize / 2);
         screenY = Settings.screenHeight / 2 - (Settings.tileSize / 2);
 
@@ -79,7 +73,7 @@ public class Player extends Entity {
         difficultyTimer = 0;
     }
 
-    private void getPlayerImage() throws IOException {
+    public void getPlayerImage() {
         setUp1(new Image(TempleRunApp.class.getResource("img/North_1.png").toExternalForm()));
         setUp2(new Image(TempleRunApp.class.getResource("img/North_2.png").toExternalForm()));
         setDown1(new Image(TempleRunApp.class.getResource("img/South_1.png").toExternalForm()));

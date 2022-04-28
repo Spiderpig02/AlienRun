@@ -1,13 +1,12 @@
 package templeRun.tile;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import templeRun.TempleRunApp;
 import templeRun.entity.Player;
+import templeRun.io.SaveAndLoad;
 import templeRun.main.Settings;
 
 public class TileManager {
@@ -16,6 +15,7 @@ public class TileManager {
     private int mapTileNum[][];
     private Player player = Player.getInstence();
     private int counter;
+    private SaveAndLoad load = new SaveAndLoad();
 
     public TileManager() {
         tile = new Tile[10];
@@ -53,50 +53,7 @@ public class TileManager {
             counter = 0;
             loadMap();
             int temp = new Random().nextInt(4);
-            switch (temp) {
-                case 0:
-                    mapTileNum[8][1] = 3;
-                    mapTileNum[8][2] = 3;
-                    mapTileNum[8][3] = 2;
-                    mapTileNum[8][4] = 2;
-                    mapTileNum[8][5] = 3;
-                    mapTileNum[8][6] = 3;
-                    break;
-                case 1:
-                    mapTileNum[8][1] = 3;
-                    mapTileNum[8][2] = 3;
-                    mapTileNum[8][3] = 3;
-                    mapTileNum[7][3] = 3;
-                    mapTileNum[7][4] = 3;
-                    mapTileNum[7][5] = 3;
-                    mapTileNum[7][6] = 3;
-                    mapTileNum[9][6] = 3;
-                    mapTileNum[9][7] = 3;
-                    break;
-                case 2:
-                    mapTileNum[8][1] = 3;
-                    mapTileNum[8][2] = 3;
-                    mapTileNum[8][3] = 3;
-                    mapTileNum[9][3] = 3;
-                    mapTileNum[9][4] = 3;
-                    mapTileNum[7][6] = 3;
-                    mapTileNum[7][7] = 3;
-                    mapTileNum[7][8] = 3;
-                    mapTileNum[8][7] = 3;
-                    mapTileNum[8][8] = 3;
-                    break;
-                case 3:
-                    mapTileNum[7][1] = 2;
-                    mapTileNum[7][2] = 2;
-                    mapTileNum[8][5] = 2;
-                    mapTileNum[9][5] = 2;
-                    mapTileNum[8][7] = 2;
-                    mapTileNum[9][9] = 2;
-                    mapTileNum[8][10] = 2;
-                    mapTileNum[8][11] = 2;
-                    mapTileNum[8][12] = 2;
-                    break;
-            }
+            mapChangeTiles(temp);
         } else {
             counter++;
         }
@@ -120,27 +77,59 @@ public class TileManager {
         }
     }
 
-    private void loadMap() {
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(TempleRunApp.class.getResourceAsStream("map/worldMap17x100.txt")))) {
-            int col = 0;
-            int row = 0;
+    public void mapChangeTiles(int temp) {
+        switch (temp) {
+            case 0:
+                mapTileNum[8][1] = 3;
+                mapTileNum[8][2] = 3;
+                mapTileNum[8][3] = 2;
+                mapTileNum[8][4] = 2;
+                mapTileNum[8][5] = 3;
+                mapTileNum[8][6] = 3;
+                break;
+            case 1:
+                mapTileNum[8][1] = 3;
+                mapTileNum[8][2] = 3;
+                mapTileNum[8][3] = 3;
+                mapTileNum[7][3] = 3;
+                mapTileNum[7][4] = 3;
+                mapTileNum[7][5] = 3;
+                mapTileNum[7][6] = 3;
+                mapTileNum[9][6] = 3;
+                mapTileNum[9][7] = 3;
+                break;
+            case 2:
+                mapTileNum[8][1] = 3;
+                mapTileNum[8][2] = 3;
+                mapTileNum[8][3] = 3;
+                mapTileNum[9][3] = 3;
+                mapTileNum[9][4] = 3;
+                mapTileNum[7][6] = 3;
+                mapTileNum[7][7] = 3;
+                mapTileNum[7][8] = 3;
+                mapTileNum[8][7] = 3;
+                mapTileNum[8][8] = 3;
+                break;
+            case 3:
+                mapTileNum[7][1] = 2;
+                mapTileNum[7][2] = 2;
+                mapTileNum[8][5] = 2;
+                mapTileNum[9][5] = 2;
+                mapTileNum[8][7] = 2;
+                mapTileNum[9][9] = 2;
+                mapTileNum[8][10] = 2;
+                mapTileNum[8][11] = 2;
+                mapTileNum[8][12] = 2;
+                break;
+        }
+    }
 
-            while (col < Settings.maxWorldCol && row < Settings.maxWorldRow) {
-                String line = br.readLine();
-                while (col < Settings.maxWorldCol) {
-                    String numbers[] = line.split(" ");
-                    int num = Integer.parseInt(numbers[col]);
-                    mapTileNum[col][row] = num;
-                    col++;
-                }
-                if (col == Settings.maxWorldCol) {
-                    col = 0;
-                    row++;
-                }
+    private void loadMap() {
+        int[][] tmp = load.loadMap();
+        for (int i = 0; i < mapTileNum.length; i++) {
+            for (int j = 0; j < mapTileNum[i].length; j++) {
+                mapTileNum[i][j] = tmp[i][j];
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

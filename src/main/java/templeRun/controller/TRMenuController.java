@@ -38,6 +38,7 @@ public class TRMenuController extends Controller {
             username.setText(usernameFBoks);
         }
         player.setUsername(username.getText());
+        player.getPlayerImage();
         changeStage("fxml/TempleRunGame.fxml", "Temple Run");
     }
 

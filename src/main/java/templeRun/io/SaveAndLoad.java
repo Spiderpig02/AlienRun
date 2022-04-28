@@ -5,10 +5,13 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import templeRun.TempleRunApp;
 import templeRun.entity.Score;
+import templeRun.main.Settings;
 
 public class SaveAndLoad implements ISaveAndLoad {
 
@@ -52,5 +55,31 @@ public class SaveAndLoad implements ISaveAndLoad {
         }
 
         return tmpMap;
+    }
+
+    public int[][] loadMap() {
+        int[][] mapTileNum = new int[Settings.maxWorldCol][Settings.maxWorldRow];
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(TempleRunApp.class.getResourceAsStream("map/worldMap17x100.txt")))) {
+            int col = 0;
+            int row = 0;
+
+            while (col < Settings.maxWorldCol && row < Settings.maxWorldRow) {
+                String line = br.readLine();
+                while (col < Settings.maxWorldCol) {
+                    String numbers[] = line.split(" ");
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[col][row] = num;
+                    col++;
+                }
+                if (col == Settings.maxWorldCol) {
+                    col = 0;
+                    row++;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mapTileNum;
     }
 }
