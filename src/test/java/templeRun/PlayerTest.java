@@ -19,6 +19,7 @@ public class PlayerTest {
         player1 = Player.getInstence();
         player2 = Player.getInstence();
         player3 = Player.getInstence();
+        player1.setSpeed(3);
     }
 
     @Test

@@ -28,7 +28,7 @@ public class TileManager {
     private int randomTimer() {
         switch (player.getSpeed()) {
             case 3:
-                return 400;
+                return 350;
             case 5:
                 return 300;
             case 7:
@@ -77,6 +77,7 @@ public class TileManager {
         }
     }
 
+    // Denne er public bare pga at den skal være synlig for testing
     public void mapChangeTiles(int temp) {
         switch (temp) {
             case 0:
@@ -124,7 +125,8 @@ public class TileManager {
         }
     }
 
-    private void loadMap() {
+    // Denne er public bare pga at den skal være synlig for testing
+    public void loadMap() {
         int[][] tmp = load.loadMap();
         for (int i = 0; i < mapTileNum.length; i++) {
             for (int j = 0; j < mapTileNum[i].length; j++) {

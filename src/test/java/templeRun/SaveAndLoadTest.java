@@ -59,7 +59,5 @@ public class SaveAndLoadTest {
         hashMap.forEach((e, f) -> {
             System.out.println(e + f);
         });
-
-        // assertEquals(hashMap, tmp);
     }
 }

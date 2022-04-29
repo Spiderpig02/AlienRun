@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 
 public class KeyHandler {
 
+    // upPressed og downPressed er her for debugging
     private boolean upPressed, downPressed, leftPressed, rightPressed;
 
     public boolean isUpPressed() {
