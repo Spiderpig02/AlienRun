@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
  
-    <groupId>TDT4100_project</groupId>
-    <artifactId>tdt4100_v2022_prosjekt_boilerplate</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+	<groupId>TDT4100_project</groupId>
+	<artifactId>AlienRun</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
  
-    <name>tdt4100_v2022_prosjekt_boilerplate</name>
+	<name>AlienRun</name>
 	
 
    <dependencies>
@@ -29,9 +29,9 @@
 
 	<!-- JUnit 5 -->
 	<dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.7.0</version>
+		<groupId>org.junit.jupiter</groupId>
+		<artifactId>junit-jupiter-engine</artifactId>
+		<version>5.7.0</version>
 	</dependency>
 
   </dependencies>
@@ -59,7 +59,22 @@
 			  <argLine>--enable-preview</argLine>
 		  </configuration>
 	  </plugin>
-
+	
+	  <plugin>
+		<groupId>org.openjfx</groupId>
+		<artifactId>javafx-maven-plugin</artifactId>
+		<version>0.0.6</version>
+		<executions>
+		  <execution>
+			<!-- Default configuration for running -->
+			<!-- Usage: mvn clean javafx:run -->
+			<id>default-cli</id>
+			<configuration>
+			  <mainClass>templeRun.TempleRunApp</mainClass>
+			</configuration>
+		  </execution>
+		</executions>
+	  </plugin>
 	</plugins>
   </build>
 </project>
