@@ -13,6 +13,8 @@ This project is based of the popular mobile game Temple Run, and is writen in Ja
 
 ![Alt text](image-1.png)
 
+[![Image from Gyazo](https://i.gyazo.com/418a95c0affc2e62430037b0a66a1068.gif)](https://gyazo.com/418a95c0affc2e62430037b0a66a1068)
+
 ## Starting the game
 
 To start the game, all you need is JVM on you PC
