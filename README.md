@@ -20,3 +20,12 @@ cd AlienRun
 ```bash
 mvn clean javafx:run
 ```
+
+
+
+
+# How to run Tests
+To run the full test suite, run the following command in the root directory of the project:
+```bash
+mvn test
+```
